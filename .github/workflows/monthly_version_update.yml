@@ -1,12 +1,11 @@
 name: Monthly Version Update
-
 on:
   schedule:
     - cron: '0 0 1 * *'
   workflow_dispatch:
 
 jobs:
-  update-version:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -15,7 +14,7 @@ jobs:
       with:
         submodules: recursive
         fetch-depth: 0
-        token: ${{secrets.GIT_PUSH_TOKEN}}
+        token: ${{secrets.GITHUB_TOKEN}}
     - name: Update version
       run: |
         current_version=$(date +'%y.%m')
@@ -29,3 +28,4 @@ jobs:
           git commit -m "chore: update About Page version to $current_version"
           git push
         fi
+
