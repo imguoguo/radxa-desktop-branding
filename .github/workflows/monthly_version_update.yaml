@@ -29,3 +29,5 @@ jobs:
           git commit -m "chore: update about page version to $version"
           git push
         fi
+    - name: Build & Release
+      uses: ./.github/actions/release
